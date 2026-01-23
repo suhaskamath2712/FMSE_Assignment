@@ -1,3 +1,4 @@
+//====== Initial model ======
 sig Car {}
 
 one sig Rentals
@@ -6,37 +7,41 @@ one sig Rentals
 	rented: set Car
 }
 
-fact p1 
+//====== Problem 1 ======
+pred p1 
 {
 	//P1: At any instant, every car is either available or rented
 	all c: Car | c in Rentals.available + Rentals.rented
+
+	//no car can be in both available and rented sets at the same time
+	no c: Car | c in Rentals.available and c in Rentals.rented
 }
 
-fact p2
+pred p2
 {
 	//P2: There is always at least one available car
 	some Rentals.available
+}
+
+pred badInstances
+{
+	!(p1 and p2)
+}
+
+run badInstances for 8
+
+//====== Problem 2 ======
+fact p1_and_p2
+{
+	p1 and p2
 }
 
 pred Show {}
 
 run Show for 8
 
-pred badInstances
-{
-	//P1: At any instant, every car is either available or rented
-	//Reverse of this will be:
-	//There exists a car that is neither available nor rented
-	some c: Car | c not in Rentals.available + Rentals.rented
 
-	//P2: There is always at least one available car
-	//Reverse of this will be:
-	//No available cars
-	no Rentals.available
-}
-
-run badInstances for 8
-
+//====== Problem 3 ======
 //Ensures P1 & P2 are satisfied
 pred original_ok
 {
@@ -52,13 +57,6 @@ pred pre_rent[toRent: Car]
 	and some (Rentals.available - toRent) // at least one available remains after renting
 }
 
-// Precondition for return: P1 & P2 must hold and toReturn must be currently rented.
-pred pre_return[toReturn: Car]
-{
-	original_ok
-	and toReturn in Rentals.rented
-}
-
 pred rent[toRent: Car, newAvail : Rentals -> set Car, newRented : Rentals -> set Car]
 {
 	//If the precondition is satisfied, rent the car
@@ -69,6 +67,13 @@ pred rent[toRent: Car, newAvail : Rentals -> set Car, newRented : Rentals -> set
 }
 
 run rent for 8
+
+// Precondition for return: P1 & P2 must hold and toReturn must be currently rented.
+pred pre_return[toReturn: Car]
+{
+	original_ok
+	and toReturn in Rentals.rented
+}
 
 pred return[toReturn: Car, newAvail : Rentals -> set Car, newRented : Rentals -> set Car]
 {
@@ -81,6 +86,8 @@ pred return[toReturn: Car, newAvail : Rentals -> set Car, newRented : Rentals ->
 
 run return for 8
 
+
+//====== Problem 4 ======
 // Checking predicate for rent
 pred findBugsInrent[toRent: Car, newAvail : Rentals -> set Car, newRented : Rentals -> set Car]
 {
