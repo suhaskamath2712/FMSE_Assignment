@@ -1,4 +1,4 @@
-//====== Initial model ======
+//====== Initial model, as provided in the assignment spec ======
 sig Car {}
 
 one sig Rentals
@@ -23,6 +23,7 @@ pred p2
 	some Rentals.available
 }
 
+//If any instance does not satify both P1 and P2, it is a bad instance
 pred badInstances
 {
 	!(p1 and p2)
@@ -42,11 +43,10 @@ run Show for 8
 
 
 //====== Problem 3 ======
-//Ensures P1 & P2 are satisfied
+//Checks if the original state satisfies P1 and P2, will be used to check "before" state in rent and return operations
 pred original_ok
 {
-	all c: Car | c in Rentals.available + Rentals.rented
-	and some Rentals.available
+	p1 and p2
 }
 
 //Precondition for rent: P1 & P2 must hold, toRent must be available, and at least one available car must be there after renting
@@ -57,13 +57,23 @@ pred pre_rent[toRent: Car]
 	and some (Rentals.available - toRent) // at least one available remains after renting
 }
 
+//Rent operation
 pred rent[toRent: Car, newAvail : Rentals -> set Car, newRented : Rentals -> set Car]
 {
 	//If the precondition is satisfied, rent the car
 	pre_rent[toRent]
+	//Update the available and rented sets accordingly
 	implies
+	{
 		newAvail = Rentals -> (Rentals.available - toRent) and
 		newRented = Rentals -> (Rentals.rented + toRent)
+	}
+	//Maintain the same state if precondition is not satisfied
+	else
+	{
+		newAvail = Rentals -> Rentals.available and
+		newRented = Rentals -> Rentals.rented
+	}
 }
 
 run rent for 8
@@ -75,49 +85,62 @@ pred pre_return[toReturn: Car]
 	and toReturn in Rentals.rented
 }
 
+// Return operation
 pred return[toReturn: Car, newAvail : Rentals -> set Car, newRented : Rentals -> set Car]
 {
 	//If the precondition is satisfied, return the car
 	pre_return[toReturn]
+	//Update the available and rented sets accordingly
 	implies
+	{
 		newAvail = Rentals -> (Rentals.available + toReturn) and
 		newRented = Rentals -> (Rentals.rented - toReturn)
+	}
+	//Maintain the same state if precondition is not satisfied
+	else
+	{
+		newAvail = Rentals -> Rentals.available and
+		newRented = Rentals -> Rentals.rented
+	}
 }
 
 run return for 8
-
 
 //====== Problem 4 ======
 // Checking predicate for rent
 pred findBugsInrent[toRent: Car, newAvail : Rentals -> set Car, newRented : Rentals -> set Car]
 {
 	// Ensure the operation is applicable
-	pre_rent[toRent]
+	original_ok
 	and rent[toRent, newAvail, newRented]
 
 	// Post-state violates at least one of P1 or P2
 	and (
 		// Violation of P1: some car is neither available nor rented in the new state
 		some c: Car | c not in (newAvail[Rentals] + newRented[Rentals])
+		// OR Violation of P1: some car is both available and rented in the new state
+		or some c: Car | c in newAvail[Rentals] & newRented[Rentals]
 		// OR Violation of P2: no available cars in the new state
 		or no newAvail[Rentals]
 	)
 }
 
+run findBugsInrent for 8
+
 // Checking predicate for return
 pred findBugsInreturn[toReturn: Car, newAvail : Rentals -> set Car, newRented : Rentals -> set Car]
 {
 	// Ensure the operation is applicable
-	pre_return[toReturn]
+	original_ok
 	and return[toReturn, newAvail, newRented]
 
 	// Post-state violates at least one of P1 or P2
+	// Check same bugs as findBugsInrent
 	and (
 		some c: Car | c not in (newAvail[Rentals] + newRented[Rentals])
+		or some c: Car | c in newAvail[Rentals] & newRented[Rentals]
 		or no newAvail[Rentals]
 	)
 }
-
-run findBugsInrent for 8
 
 run findBugsInreturn for 8
