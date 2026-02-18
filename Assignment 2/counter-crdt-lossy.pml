@@ -1,21 +1,60 @@
-//In this model, we have a network that is reliable
-//Reliability is done by directly sending messages
-//to the replicas using exclusive channels, instead\
-//of going through a network
+//In this model, we have a network that can lose messages
+//Loss is done by non-deterministically choosing to not send
+//a message to a replica
 
 mtype = {INCREMENT, DECREMENT}
 
 byte global_time = 0;
 bool illegal = false;
 
-chan r1_to_r2 = [5] of {mtype, byte};
-chan r1_to_r3 = [5] of {mtype, byte};
-chan r2_to_r1 = [5] of {mtype, byte};
-chan r2_to_r3 = [5] of {mtype, byte};
-chan r3_to_r1 = [5] of {mtype, byte};
-chan r3_to_r2 = [5] of {mtype, byte};
+chan r1_to_network = [5] of {mtype, byte};
+chan r2_to_network = [5] of {mtype, byte};
+chan r3_to_network = [5] of {mtype, byte};
+chan network_to_r1 = [5] of {mtype, byte};
+chan network_to_r2 = [5] of {mtype, byte};
+chan network_to_r3 = [5] of {mtype, byte};
 
-proctype Replica(chan in1, in2, out1, out2) {
+proctype Network() {
+    mtype optype;
+    byte op_ts;
+    
+    do
+    :: r1_to_network?optype, op_ts ->
+        if 
+        :: network_to_r2!optype, op_ts;
+        :: skip; // Message Lost!
+        fi;
+
+        if 
+        :: network_to_r3!optype, op_ts;
+        :: skip; // Message Lost!
+        fi;
+
+    :: r2_to_network?optype, op_ts -> 
+        if 
+        :: network_to_r1!optype, op_ts;
+        :: skip; // Message Lost!
+        fi;
+
+        if 
+        :: network_to_r3!optype, op_ts;
+        :: skip; // Message Lost!
+        fi;
+
+    :: r3_to_network?optype, op_ts -> 
+        if 
+        :: network_to_r1!optype, op_ts;
+        :: skip; // Message Lost!
+        fi;
+
+        if 
+        :: network_to_r2!optype, op_ts;
+        :: skip; // Message Lost!
+        fi;
+    od;
+}
+
+proctype Replica(chan in, out) {
     int local_val = 0;
     mtype history[5];
     mtype optype;
@@ -35,26 +74,11 @@ proctype Replica(chan in1, in2, out1, out2) {
 
         //Broadcast
 
-        out1!optype, op_ts;
-        out2!optype, op_ts;
+        out!optype, op_ts;
     }
 
     // Receive updates from other replicas, update history
-    :: in1?optype, op_ts -> 
-        atomic {
-            // Update, iff we have not updated for this timestamp before
-            if
-            :: history[op_ts] == 0 ->
-                history[op_ts] = optype;
-                if
-                :: optype == INCREMENT -> local_val++;
-                :: optype == DECREMENT -> local_val--;
-                fi;
-            fi;
-        }
-
-    // Receive updates from other replicas, update history
-    :: in2?optype, op_ts -> 
+    :: in?optype, op_ts -> 
         atomic {
             // Update, iff we have not updated for this timestamp before
             if
@@ -100,10 +124,12 @@ proctype Checker() {
 //Initialization: start replicas with their channels
 init {
     atomic {
-        run Replica(r1_to_r2, r1_to_r3, r2_to_r1, r3_to_r1); 
-        run Replica(r2_to_r1, r2_to_r3, r1_to_r2, r3_to_r2); 
-        run Replica(r3_to_r1, r3_to_r2, r1_to_r3, r2_to_r3); 
+        run Network();
 
+        run Replica(network_to_r1, r1_to_network);
+        run Replica(network_to_r2, r2_to_network);
+        run Replica(network_to_r3, r3_to_network);
+        
         run Checker();
     }
 }
