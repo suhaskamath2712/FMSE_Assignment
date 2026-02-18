@@ -124,12 +124,11 @@ proctype Checker() {
 //Initialization: start replicas with their channels
 init {
     atomic {
-        run Network();
-
         run Replica(network_to_r1, r1_to_network);
         run Replica(network_to_r2, r2_to_network);
         run Replica(network_to_r3, r3_to_network);
-        
+
+        run Network();
         run Checker();
     }
 }

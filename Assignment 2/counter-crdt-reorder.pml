@@ -1,5 +1,4 @@
 //In this model, we have a network that can reorder messages
-//Reordering is done using random receives, using ??
 mtype = {INCREMENT, DECREMENT}
 
 byte global_time = 0;
@@ -15,24 +14,111 @@ chan network_to_r3 = [5] of {mtype, byte};
 proctype Network() {
     mtype optype;
     byte op_ts;
+
+    bool has_buf_r1 = 0;
+    mtype buf_r1_op;
+    byte buf_r1_ts;
+    
+    bool has_buf_r2 = 0;
+    mtype buf_r2_op;
+    byte buf_r2_ts;
+    
+    bool has_buf_r3 = 0;
+    mtype buf_r3_op;
+    byte buf_r3_ts;
     
     do
     :: r1_to_network?optype, op_ts ->
-        atomic {
-            network_to_r2!optype, op_ts;
-            network_to_r3!optype, op_ts;
-        }
+        if
+        //Store this message in buffer
+        :: !has_buf_r2 -> 
+            has_buf_r2 = 1;
+            buf_r2_op = optype;
+            buf_r2_ts = op_ts;
+        
+        //Forward this message
+        :: network_to_r2!optype, op_ts;
+
+        //Forward this message even if buffer is not empty
+        :: has_buf_r2 -> network_to_r2!optype, op_ts;
+        fi;
+
+        if
+        //Store this message in buffer
+        :: !has_buf_r3 -> 
+            has_buf_r3 = 1;
+            buf_r3_op = optype;
+            buf_r3_ts = op_ts;
+        
+        //Forward this message
+        :: network_to_r3!optype, op_ts;
+
+        //Forward this message even if buffer is not empty
+        :: has_buf_r3 -> network_to_r3!optype, op_ts;
+        fi;
+
     :: r2_to_network?optype, op_ts -> 
-        atomic {
-            network_to_r1!optype, op_ts;
-            network_to_r3!optype, op_ts;
-        }
+        if
+        //Store this message in buffer
+        :: !has_buf_r1 -> 
+            has_buf_r1 = 1;
+            buf_r1_op = optype;
+            buf_r1_ts = op_ts;
+        
+        //Forward this message
+        :: network_to_r1!optype, op_ts;
+
+        //Forward this message even if buffer is not empty
+        :: has_buf_r1 -> network_to_r1!optype, op_ts;
+        fi;
+
+        if
+        //Store this message in buffer
+        :: !has_buf_r3 -> 
+            has_buf_r3 = 1;
+            buf_r3_op = optype;
+            buf_r3_ts = op_ts;
+        
+        //Forward this message
+        :: network_to_r3!optype, op_ts;
+
+        //Forward this message even if buffer is not empty
+        :: has_buf_r3 -> network_to_r3!optype, op_ts;
+        fi;
 
     :: r3_to_network?optype, op_ts -> 
-        atomic {
-            network_to_r1!optype, op_ts;
-            network_to_r2!optype, op_ts;
-        }
+        if
+        //Store this message in buffer
+        :: !has_buf_r1 -> 
+            has_buf_r1 = 1;
+            buf_r1_op = optype;
+            buf_r1_ts = op_ts;
+        
+        //Forward this message
+        :: network_to_r1!optype, op_ts;
+
+        //Forward this message even if buffer is not empty
+        :: has_buf_r1 -> network_to_r1!optype, op_ts;
+        fi;
+
+        if
+        //Store this message in buffer
+        :: !has_buf_r2 -> 
+            has_buf_r2 = 1;
+            buf_r2_op = optype;
+            buf_r2_ts = op_ts;
+        
+        //Forward this message
+        :: network_to_r2!optype, op_ts;
+
+        //Forward this message even if buffer is not empty
+        :: has_buf_r2 -> network_to_r2!optype, op_ts;
+        fi;
+    
+    //Deliver any one buffered message
+    :: has_buf_r1 -> network_to_r1!buf_r1_op, buf_r1_ts; has_buf_r1 = 0;
+    :: has_buf_r2 -> network_to_r2!buf_r2_op, buf_r2_ts; has_buf_r2 = 0;
+    :: has_buf_r3 -> network_to_r3!buf_r3_op, buf_r3_ts; has_buf_r3 = 0;
     od;
 }
 
@@ -60,7 +146,7 @@ proctype Replica(chan in, out) {
     }
 
     // Receive updates from other replicas, update history
-    :: in??optype, op_ts -> 
+    :: in?optype, op_ts -> 
         atomic {
             // Update, iff we have not updated for this timestamp before
             if
@@ -106,12 +192,11 @@ proctype Checker() {
 //Initialization: start replicas with their channels
 init {
     atomic {
-        run Network();
-
         run Replica(network_to_r1, r1_to_network);
         run Replica(network_to_r2, r2_to_network);
         run Replica(network_to_r3, r3_to_network);
         
+        run Network();
         run Checker();
     }
 }

@@ -24,6 +24,6 @@
 
 (d) Reordering channel
 
-    To simulate the random order in which messages may be recieved, we use the ?? operator to read from buf. Because the operations on the CRDT are idempotent, the order of reading the messages does not matter. Hence, the order is ignored, and the model maintains its consistency.
+    To simulate the random order, we may choose to store a message rather than forwarding it immediately. Furthermore, even messages that come after the stored message may be sent first. However, because the operations on the replices are idempotent, the order of recieving/reading the messages does not matter. Hence, the order is ignored, and the model maintains its consistency.
 
     There were no errors found by spin.
