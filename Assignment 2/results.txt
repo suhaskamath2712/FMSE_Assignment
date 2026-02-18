@@ -1,0 +1,29 @@
+(a) Direct channel
+
+    In the direct channel, each replica is connected to all the other replicas, in an arrangement analogous to a complete graph. Furthermore, there are different channels for either direction, which makes the communication duplex.
+
+    There were no errors found by spin.
+
+(b) Lossy channel
+
+    To simulate the loss, we non-deterministically choose between sending a message and not sending a message to a particular replica. This is done by not having guards in the if statements.
+
+    However, the model remains consistent despite the lost updates. This is because we compare histories before comparing the local counter values. Only if the histories are consistent do we proceed further. 
+
+    There were no errors found by spin.
+
+(c) Duplicating channel
+
+    To simulate the duplication, we non-deterministically choose between sending one message and sending two messages to a particular replica.
+
+    However, the model remains consistent because we verify that an operation has been done at a timestamp before we perform the operation. In other words, an operation is done if and only if it has not been done before at this particular timestamp.
+
+    Hence, duplicates are ignored, and the model maintains its consistency.
+
+    There were no errors found by spin.
+
+(d) Reordering channel
+
+    To simulate the random order in which messages may be recieved, we use the ?? operator to read from buf. Because the operations on the CRDT are idempotent, the order of reading the messages does not matter. Hence, the order is ignored, and the model maintains its consistency.
+
+    There were no errors found by spin.
