@@ -1,0 +1,90 @@
+  0:	proc  - (:root:) creates proc  0 (:init:)
+ltl sec: [] (! (illegal))
+spin: counter-crdt-direct.pml:0, warning, proctype Replica, 'int   local_val' variable is never used (other than in print stmnts)
+Starting Replica with pid 1
+  1:	proc  0 (:init::1) creates proc  1 (Replica)
+  1:	proc  0 (:init::1) counter-crdt-direct.pml:98 (state 1)	[(run Replica(r1_to_r2,r1_to_r3,r2_to_r1,r3_to_r1))]
+Starting Replica with pid 2
+  2:	proc  0 (:init::1) creates proc  2 (Replica)
+  2:	proc  0 (:init::1) counter-crdt-direct.pml:99 (state 2)	[(run Replica(r2_to_r1,r2_to_r3,r1_to_r2,r3_to_r2))]
+Starting Replica with pid 3
+  3:	proc  0 (:init::1) creates proc  3 (Replica)
+  3:	proc  0 (:init::1) counter-crdt-direct.pml:100 (state 3)	[(run Replica(r3_to_r1,r3_to_r2,r1_to_r3,r2_to_r3))]
+Starting Checker with pid 4
+  4:	proc  0 (:init::1) creates proc  4 (Checker)
+  4:	proc  0 (:init::1) counter-crdt-direct.pml:102 (state 4)	[(run Checker())]
+  5:	proc  4 (Checker:1) counter-crdt-direct.pml:68 (state 10)	[ATOMIC]
+  6:	proc  2 (Replica:1) counter-crdt-direct.pml:21 (state 1)	[((global_time<5))]
+  7:	proc  2 (Replica:1) counter-crdt-direct.pml:24 (state 2)	[history[global_time] = INCREMENT]
+  8:	proc  2 (Replica:1) counter-crdt-direct.pml:24 (state 3)	[local_val = (local_val+1)]
+  9:	proc  2 (Replica:1) counter-crdt-direct.pml:24 (state 4)	[optype = INCREMENT]
+ 10:	proc  2 (Replica:1) counter-crdt-direct.pml:28 (state 10)	[op_ts = global_time]
+ 11:	proc  2 (Replica:1) counter-crdt-direct.pml:29 (state 11)	[global_time = (global_time+1)]
+ 12:	proc  2 (Replica:1) counter-crdt-direct.pml:33 (state 12)	[out1!optype,op_ts]
+ 13:	proc  2 (Replica:1) counter-crdt-direct.pml:34 (state 13)	[out2!optype,op_ts]
+ 14:	proc  3 (Replica:1) counter-crdt-direct.pml:52 (state 27)	[in2?optype,op_ts]
+ 15:	proc  1 (Replica:1) counter-crdt-direct.pml:21 (state 1)	[((global_time<5))]
+ 16:	proc  1 (Replica:1) counter-crdt-direct.pml:24 (state 2)	[history[global_time] = INCREMENT]
+ 17:	proc  1 (Replica:1) counter-crdt-direct.pml:24 (state 3)	[local_val = (local_val+1)]
+ 18:	proc  1 (Replica:1) counter-crdt-direct.pml:24 (state 4)	[optype = INCREMENT]
+ 19:	proc  1 (Replica:1) counter-crdt-direct.pml:28 (state 10)	[op_ts = global_time]
+ 20:	proc  1 (Replica:1) counter-crdt-direct.pml:29 (state 11)	[global_time = (global_time+1)]
+ 21:	proc  1 (Replica:1) counter-crdt-direct.pml:33 (state 12)	[out1!optype,op_ts]
+ 22:	proc  1 (Replica:1) counter-crdt-direct.pml:34 (state 13)	[out2!optype,op_ts]
+ 23:	proc  3 (Replica:1) counter-crdt-direct.pml:56 (state 28)	[((history[op_ts]==0))]
+ 24:	proc  3 (Replica:1) counter-crdt-direct.pml:57 (state 29)	[history[op_ts] = optype]
+ 25:	proc  3 (Replica:1) counter-crdt-direct.pml:59 (state 30)	[((optype==INCREMENT))]
+ 26:	proc  3 (Replica:1) counter-crdt-direct.pml:59 (state 31)	[local_val = (local_val+1)]
+ 28:	proc  3 (Replica:1) counter-crdt-direct.pml:38 (state 15)	[in1?optype,op_ts]
+ 30:	proc  1 (Replica:1) counter-crdt-direct.pml:21 (state 1)	[((global_time<5))]
+ 31:	proc  1 (Replica:1) counter-crdt-direct.pml:25 (state 5)	[history[global_time] = DECREMENT]
+ 32:	proc  1 (Replica:1) counter-crdt-direct.pml:25 (state 6)	[local_val = (local_val-1)]
+ 33:	proc  1 (Replica:1) counter-crdt-direct.pml:25 (state 7)	[optype = DECREMENT]
+spin: counter-crdt-direct.pml:28, Error: value (2->0 (1)) truncated in assignment
+ 34:	proc  1 (Replica:1) counter-crdt-direct.pml:28 (state 10)	[op_ts = global_time]
+ 35:	proc  1 (Replica:1) counter-crdt-direct.pml:29 (state 11)	[global_time = (global_time+1)]
+ 36:	proc  1 (Replica:1) counter-crdt-direct.pml:33 (state 12)	[out1!optype,op_ts]
+ 37:	proc  1 (Replica:1) counter-crdt-direct.pml:34 (state 13)	[out2!optype,op_ts]
+ 38:	proc  3 (Replica:1) counter-crdt-direct.pml:42 (state 16)	[((history[op_ts]==0))]
+ 39:	proc  3 (Replica:1) counter-crdt-direct.pml:43 (state 17)	[history[op_ts] = optype]
+ 40:	proc  3 (Replica:1) counter-crdt-direct.pml:45 (state 18)	[((optype==INCREMENT))]
+ 41:	proc  3 (Replica:1) counter-crdt-direct.pml:45 (state 19)	[local_val = (local_val+1)]
+ 42:	proc  3 (Replica:1) counter-crdt-direct.pml:21 (state 1)	[((global_time<5))]
+ 43:	proc  3 (Replica:1) counter-crdt-direct.pml:24 (state 2)	[history[global_time] = INCREMENT]
+ 44:	proc  3 (Replica:1) counter-crdt-direct.pml:24 (state 3)	[local_val = (local_val+1)]
+ 45:	proc  3 (Replica:1) counter-crdt-direct.pml:24 (state 4)	[optype = INCREMENT]
+spin: counter-crdt-direct.pml:28, Error: value (3->1 (1)) truncated in assignment
+ 46:	proc  3 (Replica:1) counter-crdt-direct.pml:28 (state 10)	[op_ts = global_time]
+ 47:	proc  3 (Replica:1) counter-crdt-direct.pml:29 (state 11)	[global_time = (global_time+1)]
+ 48:	proc  3 (Replica:1) counter-crdt-direct.pml:33 (state 12)	[out1!optype,op_ts]
+ 49:	proc  3 (Replica:1) counter-crdt-direct.pml:34 (state 13)	[out2!optype,op_ts]
+ 51:	proc  1 (Replica:1) counter-crdt-direct.pml:38 (state 15)	[in1?optype,op_ts]
+ 52:	proc  1 (Replica:1) counter-crdt-direct.pml:42 (state 16)	[((history[op_ts]==0))]
+ 53:	proc  1 (Replica:1) counter-crdt-direct.pml:43 (state 17)	[history[op_ts] = optype]
+ 54:	proc  1 (Replica:1) counter-crdt-direct.pml:45 (state 18)	[((optype==INCREMENT))]
+ 55:	proc  1 (Replica:1) counter-crdt-direct.pml:45 (state 19)	[local_val = (local_val+1)]
+ 56:	proc  1 (Replica:1) counter-crdt-direct.pml:52 (state 27)	[in2?optype,op_ts]
+ 58:	proc  2 (Replica:1) counter-crdt-direct.pml:21 (state 1)	[((global_time<5))]
+ 59:	proc  2 (Replica:1) counter-crdt-direct.pml:24 (state 2)	[history[global_time] = INCREMENT]
+ 60:	proc  2 (Replica:1) counter-crdt-direct.pml:24 (state 3)	[local_val = (local_val+1)]
+ 61:	proc  2 (Replica:1) counter-crdt-direct.pml:24 (state 4)	[optype = INCREMENT]
+spin: counter-crdt-direct.pml:28, Error: value (4->0 (1)) truncated in assignment
+ 62:	proc  2 (Replica:1) counter-crdt-direct.pml:28 (state 10)	[op_ts = global_time]
+ 63:	proc  2 (Replica:1) counter-crdt-direct.pml:29 (state 11)	[global_time = (global_time+1)]
+ 64:	proc  2 (Replica:1) counter-crdt-direct.pml:33 (state 12)	[out1!optype,op_ts]
+ 65:	proc  2 (Replica:1) counter-crdt-direct.pml:34 (state 13)	[out2!optype,op_ts]
+ 67:	proc  3 (Replica:1) counter-crdt-direct.pml:38 (state 15)	[in1?optype,op_ts]
+ 68:	proc  2 (Replica:1) counter-crdt-direct.pml:38 (state 15)	[in1?optype,op_ts]
+ 69:	proc  2 (Replica:1) counter-crdt-direct.pml:42 (state 16)	[((history[op_ts]==0))]
+ 70:	proc  2 (Replica:1) counter-crdt-direct.pml:43 (state 17)	[history[op_ts] = optype]
+ 71:	proc  2 (Replica:1) counter-crdt-direct.pml:45 (state 18)	[((optype==INCREMENT))]
+ 72:	proc  2 (Replica:1) counter-crdt-direct.pml:45 (state 19)	[local_val = (local_val+1)]
+ 73:	proc  2 (Replica:1) counter-crdt-direct.pml:52 (state 27)	[in2?optype,op_ts]
+timeout
+#processes: 5
+ 73:	proc  4 (Checker:1) counter-crdt-direct.pml:70 (state 7)
+ 73:	proc  3 (Replica:1) counter-crdt-direct.pml:39 (state 26)
+ 73:	proc  2 (Replica:1) counter-crdt-direct.pml:53 (state 38)
+ 73:	proc  1 (Replica:1) counter-crdt-direct.pml:53 (state 38)
+ 73:	proc  0 (:init::1) counter-crdt-direct.pml:104 (state 6)
+5 processes created
