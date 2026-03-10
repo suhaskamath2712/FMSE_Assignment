@@ -1,9 +1,0 @@
-never sec {    /* !([] (! (illegal))) */
-T0_init:
-	do
-	:: atomic { (! ((! (illegal)))) -> assert(!(! ((! (illegal))))) }
-	:: (1) -> goto T0_init
-	od;
-accept_all:
-	skip
-}
