@@ -1,0 +1,14 @@
+target=NodeSimple
+classpath=${config_path}
+sourcepath=${config_path}
+
+symbolic.lazy = true
+symbolic.lazy.subtypes = true
+listener = gov.nasa.jpf.symbc.heap.HeapSymbolicListener,gov.nasa.jpf.listener.ExecTracker
+symbolic.method=NodeSimple.hasCycleBounded(sym#con)
+et.print_insn=false
+et.print_src=true
+et.skip_init=true
+
+vm.storage.class=nil
+search.multiple_errors=true

@@ -1,0 +1,27 @@
+classpath=${config_path}
+sourcepath=${config_path}
+
+target = FindMin
+symbolic.method = FindMin.findMin(con)
+symbolic.debug = true
+listener= gov.nasa.jpf.symbc.SymbolicListener
+# listener
+listener+= ,gov.nasa.jpf.listener.ExecTracker 
+
+#prints source lines
+et.print_src=true
+                                                                                                  
+# does not print the bytecode
+et.print_insn=false                                                                               
+                                                                                                  
+#prints the method name
+et.print_mth=true 
+
+vm.storage.class=nil
+
+#use when failing asserts may be encountered
+search.multiple_errors=true
+
+#Addl config
+symbolic.min_int = -10
+symbolic.max_int = 10

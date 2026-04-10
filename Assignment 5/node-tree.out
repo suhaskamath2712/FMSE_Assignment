@@ -1,0 +1,348 @@
+symbolic.min_int=-2147483648
+symbolic.min_long=-9223372036854775808
+symbolic.min_short=-32768
+symbolic.min_byte=-128
+symbolic.min_char=0
+symbolic.max_int=2147483647
+symbolic.max_long=9223372036854775807
+symbolic.max_short=32767
+symbolic.max_byte=127
+symbolic.max_char=65535
+symbolic.min_double=4.9E-324
+symbolic.max_double=1.7976931348623157E308
+---->Heap Listener
+----------------------------------- search started
+      [skipping static init instructions]
+JavaPathfinder core system v8.0 (rev 2345caaa002e15c6147d001d1ccd71e4b538f8e9) - (C) 2005-2014 United States Government. All rights reserved.
+
+
+====================================================== system under test
+NodeSimple.main()
+
+====================================================== search started: 4/10/26 7:19 PM
+		 # choice: gov.nasa.jpf.vm.choice.ThreadChoiceFromSet {id:"ROOT" ,1/1,isCascaded:false}
+		 # exposed java.lang.Boolean@bc through exposed java.lang.Boolean
+		 # exposed java.lang.Boolean@bd through exposed java.lang.Boolean
+		 # exposed java.lang.Class@17 through exposed java.lang.Boolean
+		 # exposed java.lang.Class@29 through exposed java.lang.Short
+		 # exposed java.lang.Class@2f through exposed java.lang.Integer
+		 # exposed java.lang.Class@35 through exposed java.lang.Long
+		 # exposed java.lang.Class@3b through exposed java.lang.Float
+		 # exposed java.lang.Class@41 through exposed java.lang.Double
+		 # exposed java.lang.Class@1d through exposed java.lang.Byte
+		 # exposed [Ljava.io.ObjectStreamField;@d3 through exposed java.lang.String
+		 # exposed java.lang.String$CaseInsensitiveComparator@da through exposed java.lang.String
+		 # exposed java.lang.Thread$State@db through exposed java.lang.Thread$State
+		 # exposed java.lang.Thread$State@de through exposed java.lang.Thread$State
+		 # exposed java.lang.Thread$State@e1 through exposed java.lang.Thread$State
+		 # exposed java.lang.Thread$State@e4 through exposed java.lang.Thread$State
+		 # exposed java.lang.Thread$State@e7 through exposed java.lang.Thread$State
+		 # exposed java.lang.Thread$State@ea through exposed java.lang.Thread$State
+		 # exposed [Ljava.lang.Thread$State;@f0 through exposed java.lang.Thread$State
+		 # exposed java.lang.System$1@f4 through exposed java.lang.System
+		 # exposed gov.nasa.jpf.ConsoleOutputStream@f8 through exposed java.lang.System
+		 # exposed gov.nasa.jpf.ConsoleOutputStream@f9 through exposed java.lang.System
+		 # exposed java.util.Properties@10a through exposed java.lang.System
+		 # exposed [Ljava.util.Hashtable$Entry;@14d through exposed java.util.Properties@10a
+		 # exposed java.lang.Object@154 through exposed sun.misc.VM
+		 # exposed java.util.Properties@155 through exposed sun.misc.VM
+		 # exposed java.util.Collections$EmptySet@170 through exposed java.util.Collections
+		 # exposed java.util.Collections$EmptyList@17d through exposed java.util.Collections
+		 # exposed java.util.Collections$EmptyMap@184 through exposed java.util.Collections
+		 # exposed java.util.Collections$SynchronizedSet@18b through exposed java.util.Properties@10a
+		 # exposed [Ljava.util.Hashtable$Entry;@1a1 through exposed java.util.Properties@155
+		 # exposed sun.misc.Unsafe@1c2 through exposed sun.misc.Unsafe
+		 # exposed java.lang.System$2@1bb through exposed sun.misc.SharedSecrets
+            [NodeSimple.java:23] : NodeSimple arbitrary = new NodeSimple();
+            [NodeSimple.java:1] : public class NodeSimple {
+            [NodeSimple.java:1] : public class NodeSimple {
+            [NodeSimple.java:23] : NodeSimple arbitrary = new NodeSimple();
+            [NodeSimple.java:24] : hasCycleBounded(arbitrary, 1);
+            [NodeSimple.java:5] : NodeSimple slow = head;
+		 # garbage collection
+----------------------------------- [1] forward: 0 new
+		 # choice: gov.nasa.jpf.symbc.heap.HeapChoiceGenerator[id="?",isCascaded:false,0..1,delta=+1,cur=0]
+            [NodeSimple.java:5] : NodeSimple slow = head;
+            [NodeSimple.java:6] : NodeSimple fast = head;
+            [NodeSimple.java:7] : int steps = 0;
+            [NodeSimple.java:9] : while (fast != null && fast.next != null && steps < maxSteps) {
+            [NodeSimple.java:19] : return false;
+Numeric PC null
+Heap PC constraint # = 1
+head_1_SYMREF == CONST_-1
+****************************
+            [NodeSimple.java:24] : hasCycleBounded(arbitrary, 1);
+            [NodeSimple.java:25] : }
+		 # thread terminated: main index: 0
+            [NodeSimple.java:3] : 
+		 # garbage collection
+----------------------------------- [2] forward: 1 new end
+----------------------------------- [1] backtrack: 0
+		 # choice: gov.nasa.jpf.symbc.heap.HeapChoiceGenerator[id="?",isCascaded:false,0..1,delta=+1,cur=1]
+            [NodeSimple.java:5] : NodeSimple slow = head;
+            [NodeSimple.java:6] : NodeSimple fast = head;
+            [NodeSimple.java:7] : int steps = 0;
+            [NodeSimple.java:9] : while (fast != null && fast.next != null && steps < maxSteps) {
+		 # garbage collection
+----------------------------------- [2] forward: 2 new
+		 # choice: gov.nasa.jpf.symbc.heap.HeapChoiceGenerator[id="?",isCascaded:false,0..2,delta=+1,cur=0]
+            [NodeSimple.java:9] : while (fast != null && fast.next != null && steps < maxSteps) {
+            [NodeSimple.java:10] : slow = slow.next;
+            [NodeSimple.java:11] : NodeSimple t = fast.next;
+            [NodeSimple.java:12] : fast = t.next;
+            [NodeSimple.java:13] : if (slow == fast) {
+            [NodeSimple.java:14] : return true;
+Numeric PC null
+Heap PC constraint # = 3
+head_1_SYMREF.next == head_1_SYMREF &&
+head_1_SYMREF == CONST_0 &&
+head_1_SYMREF != CONST_-1
+****************************
+            [NodeSimple.java:24] : hasCycleBounded(arbitrary, 1);
+            [NodeSimple.java:25] : }
+		 # thread terminated: main index: 0
+            [NodeSimple.java:3] : 
+		 # garbage collection
+----------------------------------- [3] forward: 3 new end
+----------------------------------- [2] backtrack: 2
+		 # choice: gov.nasa.jpf.symbc.heap.HeapChoiceGenerator[id="?",isCascaded:false,0..2,delta=+1,cur=1]
+            [NodeSimple.java:9] : while (fast != null && fast.next != null && steps < maxSteps) {
+            [NodeSimple.java:19] : return false;
+Numeric PC null
+Heap PC constraint # = 3
+head_1_SYMREF.next == CONST_-1 &&
+head_1_SYMREF == CONST_0 &&
+head_1_SYMREF != CONST_-1
+****************************
+            [NodeSimple.java:24] : hasCycleBounded(arbitrary, 1);
+            [NodeSimple.java:25] : }
+		 # thread terminated: main index: 0
+            [NodeSimple.java:3] : 
+		 # garbage collection
+----------------------------------- [3] forward: 4 new end
+----------------------------------- [2] backtrack: 2
+		 # choice: gov.nasa.jpf.symbc.heap.HeapChoiceGenerator[id="?",isCascaded:false,0..2,delta=+1,cur=2]
+            [NodeSimple.java:9] : while (fast != null && fast.next != null && steps < maxSteps) {
+            [NodeSimple.java:10] : slow = slow.next;
+            [NodeSimple.java:11] : NodeSimple t = fast.next;
+            [NodeSimple.java:12] : fast = t.next;
+		 # garbage collection
+----------------------------------- [3] forward: 5 new
+		 # choice: gov.nasa.jpf.symbc.heap.HeapChoiceGenerator[id="?",isCascaded:false,0..3,delta=+1,cur=0]
+            [NodeSimple.java:12] : fast = t.next;
+            [NodeSimple.java:13] : if (slow == fast) {
+            [NodeSimple.java:14] : return true;
+Numeric PC null
+Heap PC constraint # = 6
+head_1_SYMREF.next.next == head_1_SYMREF.next &&
+head_1_SYMREF.next != head_1_SYMREF &&
+head_1_SYMREF.next == CONST_1 &&
+head_1_SYMREF.next != CONST_-1 &&
+head_1_SYMREF == CONST_0 &&
+head_1_SYMREF != CONST_-1
+****************************
+            [NodeSimple.java:24] : hasCycleBounded(arbitrary, 1);
+            [NodeSimple.java:25] : }
+		 # thread terminated: main index: 0
+            [NodeSimple.java:3] : 
+		 # garbage collection
+----------------------------------- [4] forward: 6 new end
+----------------------------------- [3] backtrack: 5
+		 # choice: gov.nasa.jpf.symbc.heap.HeapChoiceGenerator[id="?",isCascaded:false,0..3,delta=+1,cur=1]
+            [NodeSimple.java:12] : fast = t.next;
+            [NodeSimple.java:13] : if (slow == fast) {
+            [NodeSimple.java:16] : steps++;
+            [NodeSimple.java:17] : }
+            [NodeSimple.java:9] : while (fast != null && fast.next != null && steps < maxSteps) {
+            [NodeSimple.java:19] : return false;
+Numeric PC null
+Heap PC constraint # = 6
+head_1_SYMREF.next.next == head_1_SYMREF &&
+head_1_SYMREF.next != head_1_SYMREF &&
+head_1_SYMREF.next == CONST_1 &&
+head_1_SYMREF.next != CONST_-1 &&
+head_1_SYMREF == CONST_0 &&
+head_1_SYMREF != CONST_-1
+****************************
+            [NodeSimple.java:24] : hasCycleBounded(arbitrary, 1);
+            [NodeSimple.java:25] : }
+		 # thread terminated: main index: 0
+            [NodeSimple.java:3] : 
+		 # garbage collection
+----------------------------------- [4] forward: 7 new end
+----------------------------------- [3] backtrack: 5
+		 # choice: gov.nasa.jpf.symbc.heap.HeapChoiceGenerator[id="?",isCascaded:false,0..3,delta=+1,cur=2]
+            [NodeSimple.java:12] : fast = t.next;
+            [NodeSimple.java:13] : if (slow == fast) {
+            [NodeSimple.java:16] : steps++;
+            [NodeSimple.java:17] : }
+            [NodeSimple.java:9] : while (fast != null && fast.next != null && steps < maxSteps) {
+            [NodeSimple.java:19] : return false;
+Numeric PC null
+Heap PC constraint # = 6
+head_1_SYMREF.next.next == CONST_-1 &&
+head_1_SYMREF.next != head_1_SYMREF &&
+head_1_SYMREF.next == CONST_1 &&
+head_1_SYMREF.next != CONST_-1 &&
+head_1_SYMREF == CONST_0 &&
+head_1_SYMREF != CONST_-1
+****************************
+            [NodeSimple.java:24] : hasCycleBounded(arbitrary, 1);
+            [NodeSimple.java:25] : }
+		 # thread terminated: main index: 0
+            [NodeSimple.java:3] : 
+		 # garbage collection
+----------------------------------- [4] forward: 8 new end
+----------------------------------- [3] backtrack: 5
+		 # choice: gov.nasa.jpf.symbc.heap.HeapChoiceGenerator[id="?",isCascaded:false,0..3,delta=+1,cur=3]
+            [NodeSimple.java:12] : fast = t.next;
+            [NodeSimple.java:13] : if (slow == fast) {
+            [NodeSimple.java:16] : steps++;
+            [NodeSimple.java:17] : }
+            [NodeSimple.java:9] : while (fast != null && fast.next != null && steps < maxSteps) {
+		 # garbage collection
+----------------------------------- [4] forward: 9 new
+		 # choice: gov.nasa.jpf.symbc.heap.HeapChoiceGenerator[id="?",isCascaded:false,0..4,delta=+1,cur=0]
+            [NodeSimple.java:9] : while (fast != null && fast.next != null && steps < maxSteps) {
+            [NodeSimple.java:19] : return false;
+Numeric PC null
+Heap PC constraint # = 10
+head_1_SYMREF.next.next.next == head_1_SYMREF.next.next &&
+head_1_SYMREF.next.next != head_1_SYMREF &&
+head_1_SYMREF.next.next != head_1_SYMREF.next &&
+head_1_SYMREF.next.next == CONST_2 &&
+head_1_SYMREF.next.next != CONST_-1 &&
+head_1_SYMREF.next != head_1_SYMREF &&
+head_1_SYMREF.next == CONST_1 &&
+head_1_SYMREF.next != CONST_-1 &&
+head_1_SYMREF == CONST_0 &&
+head_1_SYMREF != CONST_-1
+****************************
+            [NodeSimple.java:24] : hasCycleBounded(arbitrary, 1);
+            [NodeSimple.java:25] : }
+		 # thread terminated: main index: 0
+            [NodeSimple.java:3] : 
+		 # garbage collection
+----------------------------------- [5] forward: 10 new end
+----------------------------------- [4] backtrack: 9
+		 # choice: gov.nasa.jpf.symbc.heap.HeapChoiceGenerator[id="?",isCascaded:false,0..4,delta=+1,cur=1]
+            [NodeSimple.java:9] : while (fast != null && fast.next != null && steps < maxSteps) {
+            [NodeSimple.java:19] : return false;
+Numeric PC null
+Heap PC constraint # = 10
+head_1_SYMREF.next.next.next == head_1_SYMREF.next &&
+head_1_SYMREF.next.next != head_1_SYMREF &&
+head_1_SYMREF.next.next != head_1_SYMREF.next &&
+head_1_SYMREF.next.next == CONST_2 &&
+head_1_SYMREF.next.next != CONST_-1 &&
+head_1_SYMREF.next != head_1_SYMREF &&
+head_1_SYMREF.next == CONST_1 &&
+head_1_SYMREF.next != CONST_-1 &&
+head_1_SYMREF == CONST_0 &&
+head_1_SYMREF != CONST_-1
+****************************
+            [NodeSimple.java:24] : hasCycleBounded(arbitrary, 1);
+            [NodeSimple.java:25] : }
+		 # thread terminated: main index: 0
+            [NodeSimple.java:3] : 
+		 # garbage collection
+----------------------------------- [5] forward: 11 new end
+----------------------------------- [4] backtrack: 9
+		 # choice: gov.nasa.jpf.symbc.heap.HeapChoiceGenerator[id="?",isCascaded:false,0..4,delta=+1,cur=2]
+            [NodeSimple.java:9] : while (fast != null && fast.next != null && steps < maxSteps) {
+            [NodeSimple.java:19] : return false;
+Numeric PC null
+Heap PC constraint # = 10
+head_1_SYMREF.next.next.next == head_1_SYMREF &&
+head_1_SYMREF.next.next != head_1_SYMREF &&
+head_1_SYMREF.next.next != head_1_SYMREF.next &&
+head_1_SYMREF.next.next == CONST_2 &&
+head_1_SYMREF.next.next != CONST_-1 &&
+head_1_SYMREF.next != head_1_SYMREF &&
+head_1_SYMREF.next == CONST_1 &&
+head_1_SYMREF.next != CONST_-1 &&
+head_1_SYMREF == CONST_0 &&
+head_1_SYMREF != CONST_-1
+****************************
+            [NodeSimple.java:24] : hasCycleBounded(arbitrary, 1);
+            [NodeSimple.java:25] : }
+		 # thread terminated: main index: 0
+            [NodeSimple.java:3] : 
+		 # garbage collection
+----------------------------------- [5] forward: 12 new end
+----------------------------------- [4] backtrack: 9
+		 # choice: gov.nasa.jpf.symbc.heap.HeapChoiceGenerator[id="?",isCascaded:false,0..4,delta=+1,cur=3]
+            [NodeSimple.java:9] : while (fast != null && fast.next != null && steps < maxSteps) {
+            [NodeSimple.java:19] : return false;
+Numeric PC null
+Heap PC constraint # = 10
+head_1_SYMREF.next.next.next == CONST_-1 &&
+head_1_SYMREF.next.next != head_1_SYMREF &&
+head_1_SYMREF.next.next != head_1_SYMREF.next &&
+head_1_SYMREF.next.next == CONST_2 &&
+head_1_SYMREF.next.next != CONST_-1 &&
+head_1_SYMREF.next != head_1_SYMREF &&
+head_1_SYMREF.next == CONST_1 &&
+head_1_SYMREF.next != CONST_-1 &&
+head_1_SYMREF == CONST_0 &&
+head_1_SYMREF != CONST_-1
+****************************
+            [NodeSimple.java:24] : hasCycleBounded(arbitrary, 1);
+            [NodeSimple.java:25] : }
+		 # thread terminated: main index: 0
+            [NodeSimple.java:3] : 
+		 # garbage collection
+----------------------------------- [5] forward: 13 new end
+----------------------------------- [4] backtrack: 9
+		 # choice: gov.nasa.jpf.symbc.heap.HeapChoiceGenerator[id="?",isCascaded:false,0..4,delta=+1,cur=4]
+            [NodeSimple.java:9] : while (fast != null && fast.next != null && steps < maxSteps) {
+            [NodeSimple.java:19] : return false;
+Numeric PC null
+Heap PC constraint # = 14
+head_1_SYMREF.next.next.next != head_1_SYMREF &&
+head_1_SYMREF.next.next.next != head_1_SYMREF.next &&
+head_1_SYMREF.next.next.next != head_1_SYMREF.next.next &&
+head_1_SYMREF.next.next.next == CONST_3 &&
+head_1_SYMREF.next.next.next != CONST_-1 &&
+head_1_SYMREF.next.next != head_1_SYMREF &&
+head_1_SYMREF.next.next != head_1_SYMREF.next &&
+head_1_SYMREF.next.next == CONST_2 &&
+head_1_SYMREF.next.next != CONST_-1 &&
+head_1_SYMREF.next != head_1_SYMREF &&
+head_1_SYMREF.next == CONST_1 &&
+head_1_SYMREF.next != CONST_-1 &&
+head_1_SYMREF == CONST_0 &&
+head_1_SYMREF != CONST_-1
+****************************
+            [NodeSimple.java:24] : hasCycleBounded(arbitrary, 1);
+            [NodeSimple.java:25] : }
+		 # thread terminated: main index: 0
+            [NodeSimple.java:3] : 
+		 # garbage collection
+----------------------------------- [5] forward: 14 new end
+----------------------------------- [4] backtrack: 9
+----------------------------------- [4] done: 9
+----------------------------------- [3] backtrack: 5
+----------------------------------- [3] done: 5
+----------------------------------- [2] backtrack: 2
+----------------------------------- [2] done: 2
+----------------------------------- [1] backtrack: 0
+----------------------------------- [1] done: 0
+----------------------------------- [0] backtrack: -1
+----------------------------------- [0] done: -1
+----------------------------------- search finished
+
+====================================================== results
+no errors detected
+
+====================================================== statistics
+elapsed time:       00:00:00
+states:             new=15,visited=0,backtracked=15,end=11
+search:             maxDepth=5,constraints=0
+choice generators:  thread=1 (signal=0,lock=1,sharedRef=0,threadApi=0,reschedule=0), data=4
+heap:               new=455,released=114,maxLive=450,gcCycles=15
+instructions:       6476
+max memory:         236MB
+loaded code:        classes=81,methods=1618
+
+====================================================== search finished: 4/10/26 7:19 PM
