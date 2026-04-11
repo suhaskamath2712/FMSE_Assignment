@@ -1,14 +1,21 @@
-target=NodeSimple
 classpath=${config_path}
 sourcepath=${config_path}
 
+target = NodeSimple
+symbolic.method = NodeSimple.hasCycleBounded(sym#con)
+symbolic.debug = true
+listener= gov.nasa.jpf.symbc.SymbolicListener
+# listener
+listener+= ,gov.nasa.jpf.listener.ExecTracker
+
+# Important configuration
 symbolic.lazy = true
-symbolic.lazy.subtypes = true
-listener = gov.nasa.jpf.symbc.heap.HeapSymbolicListener,gov.nasa.jpf.listener.ExecTracker
-symbolic.method=NodeSimple.hasCycleBounded(sym#con)
-et.print_insn=false
+
+# In the presence of Inheritance set this to true
+#symbolic.lazy.subtypes = true
+
 et.print_src=true
-et.skip_init=true
+et.print_insn=false
+et.print_mth=true
 
 vm.storage.class=nil
-search.multiple_errors=true

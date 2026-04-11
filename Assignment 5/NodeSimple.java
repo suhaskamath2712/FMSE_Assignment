@@ -10,9 +10,8 @@ public class NodeSimple {
             slow = slow.next;
             NodeSimple t = fast.next;
             fast = t.next;
-            if (slow == fast) {
+            if (slow == fast)
                 return true;
-            }
             steps++;
         }
 
@@ -20,7 +19,6 @@ public class NodeSimple {
     }
 
     public static void main(String[] args) {
-        NodeSimple arbitrary = new NodeSimple();
-        hasCycleBounded(arbitrary, 1);
+        hasCycleBounded(new NodeSimple(), 1);
     }
 }
