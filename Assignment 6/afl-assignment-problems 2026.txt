@@ -6,7 +6,7 @@ mafl-2.35b). Follow the instructions for running the AFL tools from the
 README.txt on the course website.
 
 Your solution to the assignment should be a single zip file named
-<your-name>.zip. The zip file should contain the items mentioned below. 
+<your-name>.zip. The zip file should contain all the items mentioned below. 
 
 1. First, produce a seed file using the following command:
 
@@ -20,20 +20,23 @@ Your solution to the assignment should be a single zip file named
    should double check that this is true using "od -cb seed". It should
    display exactly two bytes.)
 
-   a) Run the (modified) version of AFL that is provided to you on the course
-   web page on the program for-class-while.c that is also provided to you
-   on the class web page, using the seed file that you created above. You
-   can kill AFL after it completes 20 cycles. You need to upload the entire 
-   output folder as an output-fcw.zip file. (The output folder is the one that
-   contains the sub-folders "queue", "hangs", etc.)
+   a) Run the (modified) version of AFL that is provided to you on the
+     course web page on the program for-class-while.c that is also provided
+     to you on the class web page, using the seed file that you created
+     above. You can kill AFL after it completes 20 cycles. You need to
+     upload the entire "output" folder as a file named output-fcw.zip.
+     (The output folder is the one that contains the sub-folders "queue",
+     "hangs", etc.)
    
-   b) List all test input file ids ("xxxxxx" in "id:xxxxxx" part of test input name)
-   that were obtained using 1-bit flips, and for each such file, identify bit 
-   position that is flipped compared to its parent ("yyyyyy" in "id:xxxxxx,src:yyyyyy"
-   part of test input name). Take left most bit in the input char sequence as position
-   zero. Write your answer in a file "problem1.pdf".
+   b) List the IDs of all test input files that were obtained using 1-bit
+      flips. The ID of a file is the number that appears after "id:" in the
+      file's name. For each such file, also identify the bit position that
+      is flipped compared to its parent. Take the leftmost bit in the input
+      byte sequence as position zero. If there are more than three files in
+      your queue that were obtained using 1-bit flips, identify the bit
+      position only for the first three files. Write your answer in a file
+      "problem1.pdf".
 
-   Create a zip file problem1.zip file containing output-fcw.zip, problem1.pdf.
      
 Marks: 10
 
@@ -58,33 +61,33 @@ return;
 }
 
 
-Run the (modified) version of AFL that is provided to you on the course
-web page on the above using the seed file that contains only the single character "a".
-Create this seed using the command described in problem 1. 
+Run the (modified) version of AFL that is provided to you on the course web
+page on the above program using a seed file that contains only the single
+character "a".  Create this seed using the command described in Problem 1.
 
-Run the AFL until it violates the assertion. 
+Run AFL until it violates the assertion. 
 
-Before running the AFL, run the following command.
+Before running AFL, run the following command.
 export AFL_BENCH_UNTIL_CRASH=1
 This command enables AFL to stop after finding the assertion violation.
 
-Write all written answers asked below in a file named "problem2.pdf".
+Place all written answers, figures, and screenshots asked for below within a file named "problem2.pdf".
 
-a) For each file in the "queue" and "crashes" folder, Print the file name and its contents 
-(ignore README.txt file).
+a) For each file in the "queue" and "crashes" folder, write the file's name and its contents (ignore README.txt file). Regarding the contents, please show each byte as two digits in hexadecimal. 
+
 b) From the AFL screen write down the following field values:
 i) No. cycles
 ii) No. Levels
 iii) No. of Generated test inputs
 iv) No of inputs retained due to each of the fuzzing operations
-In your answer, include a screenshot of AFL when it is terminated. Copy-paste this screen
-shot in the same pdf file. Additionally, copy-paste the contents of the "fuzzer_stats" file
-emitted by afl-fuzz into the same pdf file. Look at the output folder for this file.
 
-c) From the run of afl-fuzz that you obtained as solution, draw the directed graph of 
-input files in the "queue" folder. Each node in the graph is the test input id 
-("xxxxxx" in "id:xxxxxx" part of test input name), whereas edge(s) is/are the
-parent(s) of a test input file id.
+Include a screenshot of AFL when it is terminated. Additionally, copy-paste
+the contents of the "fuzzer_stats" file emitted by afl-fuzz into the same file
+problem2.pdf file. Look into the output folder for this file.
+
+c) From the run of afl-fuzz that you obtained as solution, draw the
+directed graph of input files in the "queue" folder. Each node in the graph
+is a test input ID, whereas edges represent parent-child relationships. 
 
 d) In the same graph, add a special node as "crash" and add its parent edge(s).
 
@@ -95,25 +98,23 @@ Marks: 20
 3. Consider the test program crack-addr.c that is shared with this assignment.
 For this problem, create a seed file exactly as in Problem 1.
  
-a) Run afl-fuzz on this program using a 10-minute timeout. You need to upload 
-the entire output folder into output-woa.zip. 
+a) Run afl-fuzz on this program using a 10-minute timeout. You need to
+   upload the entire output folder as a file named output-woa.zip.
 
-b) This program contains array overflows. Just before each array access statement
-in program, write an assert statement to check whether array access   
-that can catch array overflows. Submit this file as crack-addr-assert.c.
+b) This program contains array out of bounds issues. Just before each array
+   access in program, write an assert statement to check whether that array
+   access can go out of the bounds. Submit this modified program as
+   crack-addr-assert.c.
 
-c) Identify inputs in the queue folder that cause assertion violations 
-but are not in the crashes folder. For this part and next problem, write the 
-answer in problem3.pdf. 
+c) Identify inputs in the queue folder that cause assertion violations but
+   are not in the crashes folder. For this part and the next part, write
+   your answer in a file named problem3.pdf.
 
-c) Briefly explain (in two lines) why those inputs that violate assertions
-are not in the crashes folder (from the run mentioned in part a) above).
+d) Briefly explain (in two lines) why those inputs that violate assertions
+   are not in the crashes folder (from the run mentioned in part-a above).
 
-d) Run afl-fuzz on crack-addr-assert.c and share the output folder by uploading it
-into output-assert.zip.
-
-create a zip file problem3.zip file containing output-woa.zip, crack-addr-assert.c, 
-output-assert.zip, and problem3.pdf.
+e) Run afl-fuzz on crack-addr-assert.c for 10 minutes and share the output
+   folder by uploading it as a file named output-assert.zip.
 
 Marks: 20
 
