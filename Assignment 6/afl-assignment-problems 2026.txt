@@ -12,30 +12,31 @@ Your solution to the assignment should be a single zip file named
 
      echo -n "xx" > seed
 
-   IMPORTANT NOTE: You should use the last two digits of your IISc Student
-   Registration number instead of "xx".
+   IMPORTANT NOTE: You should use the first two letters of your IISc email ID
+   instead of "xx".
 
    The "echo -n" will ensure that the seed file will have two bytes
    exactly, with no trailing newline characters or null characters. (You
    should double check that this is true using "od -cb seed". It should
    display exactly two bytes.)
 
-   a) Run the (modified) version of AFL that is provided to you on the
-     course web page on the program for-class-while.c that is also provided
-     to you on the class web page, using the seed file that you created
-     above. You can kill AFL after it completes 20 cycles. You need to
-     upload the entire "output" folder as a file named output-fcw.zip.
-     (The output folder is the one that contains the sub-folders "queue",
-     "hangs", etc.)
+   a) Run the (modified) version of AFL that is provided to you on the course
+     web page on the program for-class-while.c that is also provided to you on
+     the class web page, using the seed file that you created above. You can
+     kill AFL after you see at least two files in the queue folder obtained
+     using 1-bit or 2-bit flips, or you can kill after 10 minutes in case you
+     still didn't obtain atleast two such files.  You need to upload the entire
+     "output" folder as a file named output-fcw.zip.  (The output folder is the
+     one that contains the sub-folders "queue", "hangs", etc.)
    
-   b) List the IDs of all test input files that were obtained using 1-bit
-      flips. The ID of a file is the number that appears after "id:" in the
-      file's name. For each such file, also identify the bit position that
-      is flipped compared to its parent. Take the leftmost bit in the input
-      byte sequence as position zero. If there are more than three files in
-      your queue that were obtained using 1-bit flips, identify the bit
-      position only for the first three files. Write your answer in a file
-      "problem1.pdf".
+   b) List the IDs of all test input files that were obtained using 1-bit or
+      2-bit flips. The ID of a file is the number that appears after "id:" in
+      the file's name. For each such file, also identify the bit position(s)
+      that is/are flipped compared to its parent. Take the leftmost bit in the
+      input byte sequence as position zero. If there are more than two files in
+      your queue that were obtained using 1- or 2-bit flips, identify the bit
+      position(s) for any two files (you should clearly say which files you are
+      considering for this).  Write your answer in a file "problem1.pdf".
 
      
 Marks: 10
