@@ -1,0 +1,22 @@
+classpath=${config_path}
+sourcepath=${config_path}
+
+target = MockFinal.MF_JPF_Q5_NodeCycle
+symbolic.method = MockFinal.MF_JPF_Q5_NodeCycle.checkSoundness(sym#con)
+symbolic.debug = true
+listener= gov.nasa.jpf.symbc.SymbolicListener
+listener+= ,gov.nasa.jpf.listener.ExecTracker
+
+# Important configuration (heap exploration)
+symbolic.lazy = true
+
+# Pretty printing
+et.print_src=true
+et.print_insn=false
+et.print_mth=true
+et.print_insn=false
+
+vm.storage.class=nil
+
+# Helpful when failing asserts may be encountered
+search.multiple_errors=true
