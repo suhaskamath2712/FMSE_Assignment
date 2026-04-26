@@ -1,0 +1,140 @@
+FMSE Assignment 4 (VCC)
+-----------------------
+
+Total Marks: 75
+Due on Thu 28 March 2024.
+
+Submit all your programming answers in a single text file. The written
+part of the answer to Q1 can be submitted by hard copy.
+
+
+Q1. Consider the "mult" function below, which multiplies two unsigned
+numbers by repeated addition. Your friend is trying to prove the given
+pre-post property for the program, using the loop invariant shown.
+[20 marks]
+
+(a) Write out the verification conditions that would be generated to
+check that the invariant is adequate and inductive (see
+slide 18 on "Generating VCs for a program").
+
+(b) Are these VCs logically valid?
+
+(c) If not, give an (adequate and inductive) invariant, for which the
+generated VCs would be valid.
+
+(d) Verify this program in VCC.
+
+unsigned mult (unsigned n, unsigned m)
+_(requires n <= 100 && m <= 100)
+_(ensures \result == n*m) {
+  unsigned a = 0;
+  unsigned x = 0;
+  while (x < m) 
+  _(invariant a == n*x)
+  {
+    a = a + n;
+    x = x + 1;
+  }
+  return a;
+}
+
+
+Q2. Consider the function "max3" below that is meant to find the
+maximum of three integers: [10 marks]
+
+int max3(int x, int y, int z)
+{
+  if (x <= y)
+    if (y <= z)
+      return z;
+    else
+      return y;
+  else
+    if (x <= z)
+      return z;
+    else
+      return y;
+}
+
+Verify it in VCC. Check the counterexample model found by VCC if any,
+and fix the program based on this so that it verifies in VCC.
+
+
+Q3. Consider the following array function "sumcopy": 
+[15 marks]
+
+void sumcopy(unsigned A[10], unsigned B[10], unsigned C[10])
+  _(requires \forall unsigned k; k < 10 ==> A[k] < 100)
+  _(requires \forall unsigned k; k < 10 ==> B[k] < 100)
+  _(ensures \forall unsigned k; (0 <= k && k < 10) ==> C[k] >= A[k])
+{
+    unsigned i;
+    for (i = 0; i < 10; i++)
+    {
+        C[i] = A[i] + B[i];
+    }
+}
+
+(a) Does the function satisfy its pre-post specification?
+
+(b) Give an additional precondition, which is as weak as possible,
+under which the function satisfies the specification.
+
+(c) Verify the function with your new specification in VCC.
+
+
+Q4. Consider the program below with a "main" function and a "sum"
+function. Specify a contract for "sum" such that the assert in "main"
+passes. Verify the program in VCC. [10 marks]
+
+void main(){
+  unsigned res = sum(10);
+  _(assert res >= 10)
+}
+
+unsigned sum (unsigned n)
+_(requires n <= 100)
+_(ensures ...)
+{
+  if (n == 0)
+    return 0;
+  else
+    return (n + sum(n-1));
+}
+
+
+Q5. Your friend has implemented a 3-byte counter, similar to the
+2-byte counter done in class. Prove the functional correctness of the
+implementation, using VCC. Use a Rodin-style notion of refinement.
+[20]
+
+unsigned count;
+unsigned lo, mid, hi;
+
+void init()
+{
+  count = 0;
+  lo = 0;
+  mid = 0;
+  hi = 0;
+}
+
+void inc()
+  // Precondition for inc
+  _(requires (hi < 255 || mid < 255 || lo < 255))
+  ...
+{
+  if (lo < 255)
+    lo = lo + 1;
+  else if (mid < 255) {
+    lo = 0;
+    mid = mid + 1;
+  }
+  else {
+    lo = 0;
+    mid = 0;
+    hi = hi + 1;
+  }
+}
+
+void dec() { ... }
