@@ -4,6 +4,8 @@ This repository is a collection of coursework artefacts for formal-methods tooli
 
 If you’re looking for **how to re-run the verification/fuzzing tools**, start with `Run.md`.
 
+If you're looking for the class notes, visit https://github.com/suhaskamath2712/IISc_E0272_Formal_Methods_in_Software_Engineering.
+
 ## What’s in here (at a glance)
 
 The repo spans multiple tools and file types:
