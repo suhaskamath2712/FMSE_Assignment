@@ -1,0 +1,7 @@
+Prev Loc   Curr Loc   Prev Rand   Curr Rand   Table Index    Frequency  
+6          10         4a92        7014        21853          1          
+12         13         4446        539b        29112          1          **
+10         12         7014        4446        31820          1          **
+15         17         9eef        eb4c        42043          1          
+17         19         eb4c        df0f        43689          1          
+13         15         539b        9eef        46882          1          

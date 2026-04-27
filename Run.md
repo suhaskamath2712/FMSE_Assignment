@@ -293,3 +293,5 @@ AFL outputs are submitted by zipping the **whole output directory** (the directo
 - `Assignment 6/problem1/output-fcw.zip` (zipped `op_dir/`)
 - `Assignment 6/problem3/output-woa.zip` (zipped `op_dir/`)
 - `Assignment 6/problem3/output-assert.zip` (zipped `assert_op_dir/`)
+
+VCC Command: alias vcc='WINEDEBUG=-all wine /opt/VCC/vcc/Host/bin/Release/vcc.exe'

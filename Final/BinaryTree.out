@@ -1,0 +1,485 @@
+symbolic.min_int=-50
+symbolic.min_long=-9223372036854775808
+symbolic.min_short=-32768
+symbolic.min_byte=-128
+symbolic.min_char=0
+symbolic.max_int=50
+symbolic.max_long=9223372036854775807
+symbolic.max_short=32767
+symbolic.max_byte=127
+symbolic.max_char=65535
+symbolic.min_double=4.9E-324
+symbolic.max_double=1.7976931348623157E308
+----------------------------------- search started
+      [skipping static init instructions]
+JavaPathfinder core system v8.0 (rev 2345caaa002e15c6147d001d1ccd71e4b538f8e9) - (C) 2005-2014 United States Government. All rights reserved.
+
+
+====================================================== system under test
+BinaryTree.BinaryTree.main()
+
+====================================================== search started: 4/27/26 9:34 AM
+		 # choice: gov.nasa.jpf.vm.choice.ThreadChoiceFromSet {id:"ROOT" ,1/1,isCascaded:false}
+		 # exposed java.lang.Boolean@bc through exposed java.lang.Boolean
+		 # exposed java.lang.Boolean@bd through exposed java.lang.Boolean
+		 # exposed java.lang.Class@17 through exposed java.lang.Boolean
+		 # exposed java.lang.Class@29 through exposed java.lang.Short
+		 # exposed java.lang.Class@2f through exposed java.lang.Integer
+		 # exposed java.lang.Class@35 through exposed java.lang.Long
+		 # exposed java.lang.Class@3b through exposed java.lang.Float
+		 # exposed java.lang.Class@41 through exposed java.lang.Double
+		 # exposed java.lang.Class@1d through exposed java.lang.Byte
+		 # exposed [Ljava.io.ObjectStreamField;@d3 through exposed java.lang.String
+		 # exposed java.lang.String$CaseInsensitiveComparator@da through exposed java.lang.String
+		 # exposed java.lang.Thread$State@db through exposed java.lang.Thread$State
+		 # exposed java.lang.Thread$State@de through exposed java.lang.Thread$State
+		 # exposed java.lang.Thread$State@e1 through exposed java.lang.Thread$State
+		 # exposed java.lang.Thread$State@e4 through exposed java.lang.Thread$State
+		 # exposed java.lang.Thread$State@e7 through exposed java.lang.Thread$State
+		 # exposed java.lang.Thread$State@ea through exposed java.lang.Thread$State
+		 # exposed [Ljava.lang.Thread$State;@f0 through exposed java.lang.Thread$State
+		 # exposed java.lang.System$1@f4 through exposed java.lang.System
+		 # exposed gov.nasa.jpf.ConsoleOutputStream@f8 through exposed java.lang.System
+		 # exposed gov.nasa.jpf.ConsoleOutputStream@f9 through exposed java.lang.System
+		 # exposed java.util.Properties@10a through exposed java.lang.System
+		 # exposed [Ljava.util.Hashtable$Entry;@14d through exposed java.util.Properties@10a
+		 # exposed java.lang.Object@154 through exposed sun.misc.VM
+		 # exposed java.util.Properties@155 through exposed sun.misc.VM
+		 # exposed java.util.Collections$EmptySet@170 through exposed java.util.Collections
+		 # exposed java.util.Collections$EmptyList@17d through exposed java.util.Collections
+		 # exposed java.util.Collections$EmptyMap@184 through exposed java.util.Collections
+		 # exposed java.util.Collections$SynchronizedSet@18b through exposed java.util.Properties@10a
+		 # exposed [Ljava.util.Hashtable$Entry;@1a1 through exposed java.util.Properties@155
+		 # exposed sun.misc.Unsafe@1c2 through exposed sun.misc.Unsafe
+		 # exposed java.lang.System$2@1bb through exposed sun.misc.SharedSecrets
+            [BinaryTree/BinaryTree.java:23] : BinaryTree X = new BinaryTree();
+            [BinaryTree/BinaryTree.java:5] : public class BinaryTree {
+            [BinaryTree/BinaryTree.java:5] : public class BinaryTree {
+            [BinaryTree/BinaryTree.java:23] : BinaryTree X = new BinaryTree();
+            [BinaryTree/BinaryTree.java:24] : checkSorted(X);
+            [BinaryTree/BinaryTree.java:10] : if (root == null)
+		 # garbage collection
+----------------------------------- [1] forward: 0 new
+		 # choice: gov.nasa.jpf.symbc.heap.HeapChoiceGenerator[id="?",isCascaded:false,0..1,delta=+1,cur=0]
+            [BinaryTree/BinaryTree.java:10] : if (root == null)
+            [BinaryTree/BinaryTree.java:11] : return;
+            [BinaryTree/BinaryTree.java:25] : }
+		 # thread terminated: main index: 0
+            [BinaryTree/BinaryTree.java:3] : import gov.nasa.jpf.symbc.Symbolic;
+		 # garbage collection
+----------------------------------- [2] forward: 1 new end
+----------------------------------- [1] backtrack: 0
+		 # choice: gov.nasa.jpf.symbc.heap.HeapChoiceGenerator[id="?",isCascaded:false,0..1,delta=+1,cur=1]
+            [BinaryTree/BinaryTree.java:10] : if (root == null)
+            [BinaryTree/BinaryTree.java:12] : if (root.left != null) {
+		 # garbage collection
+----------------------------------- [2] forward: 2 new
+		 # choice: gov.nasa.jpf.symbc.heap.HeapChoiceGenerator[id="?",isCascaded:false,0..2,delta=+1,cur=0]
+            [BinaryTree/BinaryTree.java:12] : if (root.left != null) {
+            [BinaryTree/BinaryTree.java:13] : if (root.left.elem > root.elem)
+            [BinaryTree/BinaryTree.java:16] : if (root.right != null) {
+		 # garbage collection
+----------------------------------- [3] forward: 3 new
+		 # choice: gov.nasa.jpf.symbc.heap.HeapChoiceGenerator[id="?",isCascaded:false,0..2,delta=+1,cur=0]
+            [BinaryTree/BinaryTree.java:16] : if (root.right != null) {
+            [BinaryTree/BinaryTree.java:17] : if (root.right.elem < root.elem)
+            [BinaryTree/BinaryTree.java:20] : }
+            [BinaryTree/BinaryTree.java:25] : }
+		 # thread terminated: main index: 0
+            [BinaryTree/BinaryTree.java:3] : import gov.nasa.jpf.symbc.Symbolic;
+		 # garbage collection
+----------------------------------- [4] forward: 4 new end
+----------------------------------- [3] backtrack: 3
+		 # choice: gov.nasa.jpf.symbc.heap.HeapChoiceGenerator[id="?",isCascaded:false,0..2,delta=+1,cur=1]
+            [BinaryTree/BinaryTree.java:16] : if (root.right != null) {
+            [BinaryTree/BinaryTree.java:20] : }
+            [BinaryTree/BinaryTree.java:25] : }
+		 # thread terminated: main index: 0
+            [BinaryTree/BinaryTree.java:3] : import gov.nasa.jpf.symbc.Symbolic;
+		 # garbage collection
+----------------------------------- [4] forward: 5 new end
+----------------------------------- [3] backtrack: 3
+		 # choice: gov.nasa.jpf.symbc.heap.HeapChoiceGenerator[id="?",isCascaded:false,0..2,delta=+1,cur=2]
+            [BinaryTree/BinaryTree.java:16] : if (root.right != null) {
+            [BinaryTree/BinaryTree.java:17] : if (root.right.elem < root.elem)
+		 # garbage collection
+----------------------------------- [4] forward: 6 new
+		 # choice: gov.nasa.jpf.symbc.numeric.PCChoiceGenerator[id="?",isCascaded:false,0..1,delta=+1,cur=0]
+            [BinaryTree/BinaryTree.java:17] : if (root.right.elem < root.elem)
+            [BinaryTree/BinaryTree.java:18] : assert(false);
+----------------------------------- [5] forward: 7 new
+		 # choice: gov.nasa.jpf.symbc.numeric.PCChoiceGenerator[id="?",isCascaded:false,0..1,delta=+1,cur=0]
+            [BinaryTree/BinaryTree.java:18] : assert(false);
+				 # exception: java.lang.AssertionError@1cf in MethodInfo[BinaryTree.BinaryTree.checkSorted(LBinaryTree/BinaryTree;)V]
+----------------------------------- [6] forward: 8 new
+Property Violated: PC is constraint # = 2
+BinaryTree.BinaryTree.$assertionsDisabled[0] == CONST_0 &&
+root_1_SYMREF.right.elem[0] < root_1_SYMREF.elem[1]
+Property Violated: result is  "java.lang.AssertionError..."
+****************************
+
+====================================================== error 1
+gov.nasa.jpf.vm.NoUncaughtExceptionsProperty
+java.lang.AssertionError
+	at BinaryTree.BinaryTree.checkSorted(BinaryTree.java:18)
+	at BinaryTree.BinaryTree.main(BinaryTree.java:24)
+
+
+====================================================== snapshot #1
+thread java.lang.Thread:{id:0,name:main,status:RUNNING,priority:5,isDaemon:false,lockCount:0,suspendCount:0}
+  call stack:
+	at BinaryTree.BinaryTree.checkSorted(BinaryTree.java:18)
+	at BinaryTree.BinaryTree.main(BinaryTree.java:24)
+
+----------------------------------- [5] backtrack: 7
+		 # choice: gov.nasa.jpf.symbc.numeric.PCChoiceGenerator[id="?",isCascaded:false,0..1,delta=+1,cur=1]
+            [BinaryTree/BinaryTree.java:18] : assert(false);
+            [BinaryTree/BinaryTree.java:20] : }
+            [BinaryTree/BinaryTree.java:25] : }
+		 # thread terminated: main index: 0
+            [BinaryTree/BinaryTree.java:3] : import gov.nasa.jpf.symbc.Symbolic;
+		 # garbage collection
+----------------------------------- [6] forward: 9 new end
+----------------------------------- [5] backtrack: 7
+----------------------------------- [5] done: 7
+----------------------------------- [4] backtrack: 6
+		 # choice: gov.nasa.jpf.symbc.numeric.PCChoiceGenerator[id="?",isCascaded:false,0..1,delta=+1,cur=1]
+            [BinaryTree/BinaryTree.java:17] : if (root.right.elem < root.elem)
+            [BinaryTree/BinaryTree.java:20] : }
+            [BinaryTree/BinaryTree.java:25] : }
+		 # thread terminated: main index: 0
+            [BinaryTree/BinaryTree.java:3] : import gov.nasa.jpf.symbc.Symbolic;
+		 # garbage collection
+----------------------------------- [5] forward: 10 new end
+----------------------------------- [4] backtrack: 6
+----------------------------------- [4] done: 6
+----------------------------------- [3] backtrack: 3
+----------------------------------- [3] done: 3
+----------------------------------- [2] backtrack: 2
+		 # choice: gov.nasa.jpf.symbc.heap.HeapChoiceGenerator[id="?",isCascaded:false,0..2,delta=+1,cur=1]
+            [BinaryTree/BinaryTree.java:12] : if (root.left != null) {
+            [BinaryTree/BinaryTree.java:16] : if (root.right != null) {
+		 # garbage collection
+----------------------------------- [3] forward: 11 new
+		 # choice: gov.nasa.jpf.symbc.heap.HeapChoiceGenerator[id="?",isCascaded:false,0..2,delta=+1,cur=0]
+            [BinaryTree/BinaryTree.java:16] : if (root.right != null) {
+            [BinaryTree/BinaryTree.java:17] : if (root.right.elem < root.elem)
+            [BinaryTree/BinaryTree.java:20] : }
+            [BinaryTree/BinaryTree.java:25] : }
+		 # thread terminated: main index: 0
+            [BinaryTree/BinaryTree.java:3] : import gov.nasa.jpf.symbc.Symbolic;
+		 # garbage collection
+----------------------------------- [4] forward: 12 new end
+----------------------------------- [3] backtrack: 11
+		 # choice: gov.nasa.jpf.symbc.heap.HeapChoiceGenerator[id="?",isCascaded:false,0..2,delta=+1,cur=1]
+            [BinaryTree/BinaryTree.java:16] : if (root.right != null) {
+            [BinaryTree/BinaryTree.java:20] : }
+            [BinaryTree/BinaryTree.java:25] : }
+		 # thread terminated: main index: 0
+            [BinaryTree/BinaryTree.java:3] : import gov.nasa.jpf.symbc.Symbolic;
+		 # garbage collection
+----------------------------------- [4] forward: 13 new end
+----------------------------------- [3] backtrack: 11
+		 # choice: gov.nasa.jpf.symbc.heap.HeapChoiceGenerator[id="?",isCascaded:false,0..2,delta=+1,cur=2]
+            [BinaryTree/BinaryTree.java:16] : if (root.right != null) {
+            [BinaryTree/BinaryTree.java:17] : if (root.right.elem < root.elem)
+		 # garbage collection
+----------------------------------- [4] forward: 14 new
+		 # choice: gov.nasa.jpf.symbc.numeric.PCChoiceGenerator[id="?",isCascaded:false,0..1,delta=+1,cur=0]
+            [BinaryTree/BinaryTree.java:17] : if (root.right.elem < root.elem)
+            [BinaryTree/BinaryTree.java:18] : assert(false);
+----------------------------------- [5] forward: 15 new
+		 # choice: gov.nasa.jpf.symbc.numeric.PCChoiceGenerator[id="?",isCascaded:false,0..1,delta=+1,cur=0]
+            [BinaryTree/BinaryTree.java:18] : assert(false);
+				 # exception: java.lang.AssertionError@1cf in MethodInfo[BinaryTree.BinaryTree.checkSorted(LBinaryTree/BinaryTree;)V]
+----------------------------------- [6] forward: 16 new
+Property Violated: PC is constraint # = 2
+BinaryTree.BinaryTree.$assertionsDisabled[0] == CONST_0 &&
+root_1_SYMREF.right.elem[-1] < root_1_SYMREF.elem[0]
+Property Violated: result is  "java.lang.AssertionError..."
+****************************
+
+====================================================== error 2
+gov.nasa.jpf.vm.NoUncaughtExceptionsProperty
+java.lang.AssertionError
+	at BinaryTree.BinaryTree.checkSorted(BinaryTree.java:18)
+	at BinaryTree.BinaryTree.main(BinaryTree.java:24)
+
+
+====================================================== snapshot #2
+thread java.lang.Thread:{id:0,name:main,status:RUNNING,priority:5,isDaemon:false,lockCount:0,suspendCount:0}
+  call stack:
+	at BinaryTree.BinaryTree.checkSorted(BinaryTree.java:18)
+	at BinaryTree.BinaryTree.main(BinaryTree.java:24)
+
+----------------------------------- [5] backtrack: 15
+		 # choice: gov.nasa.jpf.symbc.numeric.PCChoiceGenerator[id="?",isCascaded:false,0..1,delta=+1,cur=1]
+            [BinaryTree/BinaryTree.java:18] : assert(false);
+            [BinaryTree/BinaryTree.java:20] : }
+            [BinaryTree/BinaryTree.java:25] : }
+		 # thread terminated: main index: 0
+            [BinaryTree/BinaryTree.java:3] : import gov.nasa.jpf.symbc.Symbolic;
+		 # garbage collection
+----------------------------------- [6] forward: 17 new end
+----------------------------------- [5] backtrack: 15
+----------------------------------- [5] done: 15
+----------------------------------- [4] backtrack: 14
+		 # choice: gov.nasa.jpf.symbc.numeric.PCChoiceGenerator[id="?",isCascaded:false,0..1,delta=+1,cur=1]
+            [BinaryTree/BinaryTree.java:17] : if (root.right.elem < root.elem)
+            [BinaryTree/BinaryTree.java:20] : }
+            [BinaryTree/BinaryTree.java:25] : }
+		 # thread terminated: main index: 0
+            [BinaryTree/BinaryTree.java:3] : import gov.nasa.jpf.symbc.Symbolic;
+		 # garbage collection
+----------------------------------- [5] forward: 18 new end
+----------------------------------- [4] backtrack: 14
+----------------------------------- [4] done: 14
+----------------------------------- [3] backtrack: 11
+----------------------------------- [3] done: 11
+----------------------------------- [2] backtrack: 2
+		 # choice: gov.nasa.jpf.symbc.heap.HeapChoiceGenerator[id="?",isCascaded:false,0..2,delta=+1,cur=2]
+            [BinaryTree/BinaryTree.java:12] : if (root.left != null) {
+            [BinaryTree/BinaryTree.java:13] : if (root.left.elem > root.elem)
+		 # garbage collection
+----------------------------------- [3] forward: 19 new
+		 # choice: gov.nasa.jpf.symbc.numeric.PCChoiceGenerator[id="?",isCascaded:false,0..1,delta=+1,cur=0]
+            [BinaryTree/BinaryTree.java:13] : if (root.left.elem > root.elem)
+            [BinaryTree/BinaryTree.java:14] : assert(false);
+----------------------------------- [4] forward: 20 new
+		 # choice: gov.nasa.jpf.symbc.numeric.PCChoiceGenerator[id="?",isCascaded:false,0..1,delta=+1,cur=0]
+            [BinaryTree/BinaryTree.java:14] : assert(false);
+				 # exception: java.lang.AssertionError@1d7 in MethodInfo[BinaryTree.BinaryTree.checkSorted(LBinaryTree/BinaryTree;)V]
+----------------------------------- [5] forward: 21 new
+Property Violated: PC is constraint # = 2
+BinaryTree.BinaryTree.$assertionsDisabled[0] == CONST_0 &&
+root_1_SYMREF.left.elem[0] > root_1_SYMREF.elem[-1]
+Property Violated: result is  "java.lang.AssertionError..."
+****************************
+
+====================================================== error 3
+gov.nasa.jpf.vm.NoUncaughtExceptionsProperty
+java.lang.AssertionError
+	at BinaryTree.BinaryTree.checkSorted(BinaryTree.java:14)
+	at BinaryTree.BinaryTree.main(BinaryTree.java:24)
+
+
+====================================================== snapshot #3
+thread java.lang.Thread:{id:0,name:main,status:RUNNING,priority:5,isDaemon:false,lockCount:0,suspendCount:0}
+  call stack:
+	at BinaryTree.BinaryTree.checkSorted(BinaryTree.java:14)
+	at BinaryTree.BinaryTree.main(BinaryTree.java:24)
+
+----------------------------------- [4] backtrack: 20
+		 # choice: gov.nasa.jpf.symbc.numeric.PCChoiceGenerator[id="?",isCascaded:false,0..1,delta=+1,cur=1]
+            [BinaryTree/BinaryTree.java:14] : assert(false);
+            [BinaryTree/BinaryTree.java:16] : if (root.right != null) {
+		 # garbage collection
+----------------------------------- [5] forward: 22 new
+		 # choice: gov.nasa.jpf.symbc.heap.HeapChoiceGenerator[id="?",isCascaded:false,0..3,delta=+1,cur=0]
+            [BinaryTree/BinaryTree.java:16] : if (root.right != null) {
+            [BinaryTree/BinaryTree.java:17] : if (root.right.elem < root.elem)
+            [BinaryTree/BinaryTree.java:20] : }
+            [BinaryTree/BinaryTree.java:25] : }
+		 # thread terminated: main index: 0
+            [BinaryTree/BinaryTree.java:3] : import gov.nasa.jpf.symbc.Symbolic;
+		 # garbage collection
+----------------------------------- [6] forward: 23 new end
+----------------------------------- [5] backtrack: 22
+		 # choice: gov.nasa.jpf.symbc.heap.HeapChoiceGenerator[id="?",isCascaded:false,0..3,delta=+1,cur=1]
+            [BinaryTree/BinaryTree.java:16] : if (root.right != null) {
+            [BinaryTree/BinaryTree.java:17] : if (root.right.elem < root.elem)
+            [BinaryTree/BinaryTree.java:20] : }
+            [BinaryTree/BinaryTree.java:25] : }
+		 # thread terminated: main index: 0
+            [BinaryTree/BinaryTree.java:3] : import gov.nasa.jpf.symbc.Symbolic;
+		 # garbage collection
+----------------------------------- [6] forward: 24 new end
+----------------------------------- [5] backtrack: 22
+		 # choice: gov.nasa.jpf.symbc.heap.HeapChoiceGenerator[id="?",isCascaded:false,0..3,delta=+1,cur=2]
+            [BinaryTree/BinaryTree.java:16] : if (root.right != null) {
+            [BinaryTree/BinaryTree.java:20] : }
+            [BinaryTree/BinaryTree.java:25] : }
+		 # thread terminated: main index: 0
+            [BinaryTree/BinaryTree.java:3] : import gov.nasa.jpf.symbc.Symbolic;
+		 # garbage collection
+----------------------------------- [6] forward: 25 new end
+----------------------------------- [5] backtrack: 22
+		 # choice: gov.nasa.jpf.symbc.heap.HeapChoiceGenerator[id="?",isCascaded:false,0..3,delta=+1,cur=3]
+            [BinaryTree/BinaryTree.java:16] : if (root.right != null) {
+            [BinaryTree/BinaryTree.java:17] : if (root.right.elem < root.elem)
+		 # garbage collection
+----------------------------------- [6] forward: 26 new
+		 # choice: gov.nasa.jpf.symbc.numeric.PCChoiceGenerator[id="?",isCascaded:false,0..1,delta=+1,cur=0]
+            [BinaryTree/BinaryTree.java:17] : if (root.right.elem < root.elem)
+            [BinaryTree/BinaryTree.java:18] : assert(false);
+            [BinaryTree/BinaryTree.java:20] : }
+            [BinaryTree/BinaryTree.java:25] : }
+		 # thread terminated: main index: 0
+            [BinaryTree/BinaryTree.java:3] : import gov.nasa.jpf.symbc.Symbolic;
+		 # garbage collection
+----------------------------------- [7] forward: 27 new end
+----------------------------------- [6] backtrack: 26
+		 # choice: gov.nasa.jpf.symbc.numeric.PCChoiceGenerator[id="?",isCascaded:false,0..1,delta=+1,cur=1]
+            [BinaryTree/BinaryTree.java:17] : if (root.right.elem < root.elem)
+            [BinaryTree/BinaryTree.java:20] : }
+            [BinaryTree/BinaryTree.java:25] : }
+		 # thread terminated: main index: 0
+            [BinaryTree/BinaryTree.java:3] : import gov.nasa.jpf.symbc.Symbolic;
+		 # garbage collection
+----------------------------------- [7] forward: 28 new end
+----------------------------------- [6] backtrack: 26
+----------------------------------- [6] done: 26
+----------------------------------- [5] backtrack: 22
+----------------------------------- [5] done: 22
+----------------------------------- [4] backtrack: 20
+----------------------------------- [4] done: 20
+----------------------------------- [3] backtrack: 19
+		 # choice: gov.nasa.jpf.symbc.numeric.PCChoiceGenerator[id="?",isCascaded:false,0..1,delta=+1,cur=1]
+            [BinaryTree/BinaryTree.java:13] : if (root.left.elem > root.elem)
+            [BinaryTree/BinaryTree.java:16] : if (root.right != null) {
+----------------------------------- [4] forward: 29 new
+		 # choice: gov.nasa.jpf.symbc.heap.HeapChoiceGenerator[id="?",isCascaded:false,0..3,delta=+1,cur=0]
+            [BinaryTree/BinaryTree.java:16] : if (root.right != null) {
+            [BinaryTree/BinaryTree.java:17] : if (root.right.elem < root.elem)
+		 # garbage collection
+----------------------------------- [5] forward: 30 new
+		 # choice: gov.nasa.jpf.symbc.numeric.PCChoiceGenerator[id="?",isCascaded:false,0..1,delta=+1,cur=0]
+            [BinaryTree/BinaryTree.java:17] : if (root.right.elem < root.elem)
+            [BinaryTree/BinaryTree.java:18] : assert(false);
+----------------------------------- [6] forward: 31 new
+		 # choice: gov.nasa.jpf.symbc.numeric.PCChoiceGenerator[id="?",isCascaded:false,0..1,delta=+1,cur=0]
+            [BinaryTree/BinaryTree.java:18] : assert(false);
+				 # exception: java.lang.AssertionError@1cf in MethodInfo[BinaryTree.BinaryTree.checkSorted(LBinaryTree/BinaryTree;)V]
+----------------------------------- [7] forward: 32 new
+Property Violated: PC is constraint # = 3
+BinaryTree.BinaryTree.$assertionsDisabled[0] == CONST_0 &&
+root_1_SYMREF.left.elem[0] < root_1_SYMREF.elem[1] &&
+root_1_SYMREF.left.elem[0] <= root_1_SYMREF.elem[1]
+Property Violated: result is  "java.lang.AssertionError..."
+****************************
+
+====================================================== error 4
+gov.nasa.jpf.vm.NoUncaughtExceptionsProperty
+java.lang.AssertionError
+	at BinaryTree.BinaryTree.checkSorted(BinaryTree.java:18)
+	at BinaryTree.BinaryTree.main(BinaryTree.java:24)
+
+
+====================================================== snapshot #4
+thread java.lang.Thread:{id:0,name:main,status:RUNNING,priority:5,isDaemon:false,lockCount:0,suspendCount:0}
+  call stack:
+	at BinaryTree.BinaryTree.checkSorted(BinaryTree.java:18)
+	at BinaryTree.BinaryTree.main(BinaryTree.java:24)
+
+----------------------------------- [6] backtrack: 31
+		 # choice: gov.nasa.jpf.symbc.numeric.PCChoiceGenerator[id="?",isCascaded:false,0..1,delta=+1,cur=1]
+            [BinaryTree/BinaryTree.java:18] : assert(false);
+            [BinaryTree/BinaryTree.java:20] : }
+            [BinaryTree/BinaryTree.java:25] : }
+		 # thread terminated: main index: 0
+            [BinaryTree/BinaryTree.java:3] : import gov.nasa.jpf.symbc.Symbolic;
+		 # garbage collection
+----------------------------------- [7] forward: 33 new end
+----------------------------------- [6] backtrack: 31
+----------------------------------- [6] done: 31
+----------------------------------- [5] backtrack: 30
+		 # choice: gov.nasa.jpf.symbc.numeric.PCChoiceGenerator[id="?",isCascaded:false,0..1,delta=+1,cur=1]
+            [BinaryTree/BinaryTree.java:17] : if (root.right.elem < root.elem)
+            [BinaryTree/BinaryTree.java:20] : }
+            [BinaryTree/BinaryTree.java:25] : }
+		 # thread terminated: main index: 0
+            [BinaryTree/BinaryTree.java:3] : import gov.nasa.jpf.symbc.Symbolic;
+		 # garbage collection
+----------------------------------- [6] forward: 34 new end
+----------------------------------- [5] backtrack: 30
+----------------------------------- [5] done: 30
+----------------------------------- [4] backtrack: 29
+		 # choice: gov.nasa.jpf.symbc.heap.HeapChoiceGenerator[id="?",isCascaded:false,0..3,delta=+1,cur=1]
+            [BinaryTree/BinaryTree.java:16] : if (root.right != null) {
+            [BinaryTree/BinaryTree.java:17] : if (root.right.elem < root.elem)
+            [BinaryTree/BinaryTree.java:20] : }
+            [BinaryTree/BinaryTree.java:25] : }
+		 # thread terminated: main index: 0
+            [BinaryTree/BinaryTree.java:3] : import gov.nasa.jpf.symbc.Symbolic;
+		 # garbage collection
+----------------------------------- [5] forward: 35 new end
+----------------------------------- [4] backtrack: 29
+		 # choice: gov.nasa.jpf.symbc.heap.HeapChoiceGenerator[id="?",isCascaded:false,0..3,delta=+1,cur=2]
+            [BinaryTree/BinaryTree.java:16] : if (root.right != null) {
+            [BinaryTree/BinaryTree.java:20] : }
+            [BinaryTree/BinaryTree.java:25] : }
+		 # thread terminated: main index: 0
+            [BinaryTree/BinaryTree.java:3] : import gov.nasa.jpf.symbc.Symbolic;
+		 # garbage collection
+----------------------------------- [5] forward: 36 new end
+----------------------------------- [4] backtrack: 29
+		 # choice: gov.nasa.jpf.symbc.heap.HeapChoiceGenerator[id="?",isCascaded:false,0..3,delta=+1,cur=3]
+            [BinaryTree/BinaryTree.java:16] : if (root.right != null) {
+            [BinaryTree/BinaryTree.java:17] : if (root.right.elem < root.elem)
+		 # garbage collection
+----------------------------------- [5] forward: 37 new
+		 # choice: gov.nasa.jpf.symbc.numeric.PCChoiceGenerator[id="?",isCascaded:false,0..1,delta=+1,cur=0]
+            [BinaryTree/BinaryTree.java:17] : if (root.right.elem < root.elem)
+            [BinaryTree/BinaryTree.java:18] : assert(false);
+----------------------------------- [6] forward: 38 new
+		 # choice: gov.nasa.jpf.symbc.numeric.PCChoiceGenerator[id="?",isCascaded:false,0..1,delta=+1,cur=0]
+            [BinaryTree/BinaryTree.java:18] : assert(false);
+				 # exception: java.lang.AssertionError@1cf in MethodInfo[BinaryTree.BinaryTree.checkSorted(LBinaryTree/BinaryTree;)V]
+----------------------------------- [7] forward: 39 new
+Property Violated: PC is constraint # = 3
+BinaryTree.BinaryTree.$assertionsDisabled[0] == CONST_0 &&
+root_1_SYMREF.right.elem[-1] < root_1_SYMREF.elem[0] &&
+root_1_SYMREF.left.elem[0] <= root_1_SYMREF.elem[0]
+Property Violated: result is  "java.lang.AssertionError..."
+****************************
+
+====================================================== error 5
+gov.nasa.jpf.vm.NoUncaughtExceptionsProperty
+java.lang.AssertionError
+	at BinaryTree.BinaryTree.checkSorted(BinaryTree.java:18)
+	at BinaryTree.BinaryTree.main(BinaryTree.java:24)
+
+
+====================================================== snapshot #5
+thread java.lang.Thread:{id:0,name:main,status:RUNNING,priority:5,isDaemon:false,lockCount:0,suspendCount:0}
+  call stack:
+	at BinaryTree.BinaryTree.checkSorted(BinaryTree.java:18)
+	at BinaryTree.BinaryTree.main(BinaryTree.java:24)
+
+----------------------------------- [6] backtrack: 38
+		 # choice: gov.nasa.jpf.symbc.numeric.PCChoiceGenerator[id="?",isCascaded:false,0..1,delta=+1,cur=1]
+            [BinaryTree/BinaryTree.java:18] : assert(false);
+            [BinaryTree/BinaryTree.java:20] : }
+            [BinaryTree/BinaryTree.java:25] : }
+		 # thread terminated: main index: 0
+            [BinaryTree/BinaryTree.java:3] : import gov.nasa.jpf.symbc.Symbolic;
+		 # garbage collection
+----------------------------------- [7] forward: 40 new end
+----------------------------------- [6] backtrack: 38
+----------------------------------- [6] done: 38
+----------------------------------- [5] backtrack: 37
+		 # choice: gov.nasa.jpf.symbc.numeric.PCChoiceGenerator[id="?",isCascaded:false,0..1,delta=+1,cur=1]
+            [BinaryTree/BinaryTree.java:17] : if (root.right.elem < root.elem)
+            [BinaryTree/BinaryTree.java:20] : }
+            [BinaryTree/BinaryTree.java:25] : }
+		 # thread terminated: main index: 0
+            [BinaryTree/BinaryTree.java:3] : import gov.nasa.jpf.symbc.Symbolic;
+		 # garbage collection
+----------------------------------- [6] forward: 41 new end
+----------------------------------- [5] backtrack: 37
+----------------------------------- [5] done: 37
+----------------------------------- [4] backtrack: 29
+----------------------------------- [4] done: 29
+----------------------------------- [3] backtrack: 19
+----------------------------------- [3] done: 19
+----------------------------------- [2] backtrack: 2
+----------------------------------- [2] done: 2
+----------------------------------- [1] backtrack: 0
+----------------------------------- [1] done: 0
+----------------------------------- [0] backtrack: -1
+----------------------------------- [0] done: -1
+----------------------------------- search finished
+
+====================================================== Method Summaries
+Inputs: root_1_SYMREF
+[SEVERE] JPF exception, terminating: exception during searchFinished() notification

@@ -1,0 +1,30 @@
+classpath=${jpf-symbc}/build/examples
+
+sourcepath=${jpf-symbc}/src/examples
+
+target=BinaryTree.BinaryTree
+
+symbolic.method = BinaryTree.BinaryTree.checkSorted(sym)
+
+symbolic.dp=z3
+
+listener= gov.nasa.jpf.symbc.SymbolicListener
+listener+= ,gov.nasa.jpf.listener.ExecTracker 
+
+search.multiple_errors = true
+
+# Important configuration
+symbolic.lazy = true
+# search.depth_limit = 5
+
+# In the presence of Inheritance set this to true
+#symbolic.lazy.subtypes = true
+
+symbolic.debug=false
+symbolic.min_int=-50
+symbolic.max_int=50
+
+et.print_src=true
+et.print_insn=false
+et.print_mth=true
+

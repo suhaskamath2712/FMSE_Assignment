@@ -1,0 +1,27 @@
+start_time        : 1777282842
+last_update       : 1777282850
+fuzzer_pid        : 123694
+cycles_done       : 3
+execs_done        : 91419
+execs_per_sec     : 0.00
+paths_total       : 16
+paths_favored     : 2
+paths_found       : 15
+paths_imported    : 0
+max_depth         : 4
+cur_path          : 14
+pending_favs      : 0
+pending_total     : 8
+variable_paths    : 0
+stability         : 100.00%
+bitmap_cvg        : 0.01%
+unique_crashes    : 0
+unique_hangs      : 0
+last_path         : 1777282846
+last_crash        : 0
+last_hang         : 0
+execs_since_crash : 91419
+exec_timeout      : 20
+afl_banner        : pgm-for-afl
+afl_version       : 2.35b
+command_line      : /home/suhas/Downloads/AFL/mafl-2.35b/afl-fuzz -i ip_dir/ -o op_dir/ -- ./pgm-for-afl
